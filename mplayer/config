@@ -1,0 +1,89 @@
+#General setup
+#
+#Multi-threaded O/P
+lavdopts=threads=2
+# Audio output
+ao="alsa" #audio out
+af="volnorm"
+mixer-channel="Master"
+srate=48000
+
+# channels=6 # 5.1 system --> 6 channels!
+# ac=hwac3,hwdts,
+# afm=hwac3 #Use internal AC-3/DTS encoding
+really-quiet="1" #Very very little console output
+quiet="1"
+#This sets the postprocessing into overdrive using all possible spare cpu cycles to make the movie look better
+autoq=100
+vf=pp=de,hqdn3d
+
+zoom="1" #Allow sofware scaling if I use x11 for vo
+# aid="0" #audio channel
+# sid="0" #subtitle set
+
+#Display
+
+monitoraspect="16:9" #I'm on a widescreen laptop so keeps 4:3 content from stretching
+# vf-add=expand=::::1:16/9:16
+
+#subtitle code
+##Truetype fonts rock! (sudo apt-get msttcorefonts)
+font='Overlock-Regular'
+# font = 'Ubuntu-L'
+# font = 'DejaVuSerif'
+
+ffactor="1" #black outline
+sub-bg-alpha="0" #background color ala closed captions
+sub-bg-color="0" #black to white
+subfont-text-scale="4" #truetype font scaling
+subfont-osd-scale="5"
+subfont-blur="1" #Slight blur
+# 
+# 
+subpos="98" #By default subtitles are too low
+subalign="2"
+
+#always keep mplayer on top
+ontop="1"
+
+# Fix A/V sync problems. *
+# mc=0.2
+# autosync=30
+
+#==========
+## Subtitles
+##==========
+
+#Subtitle files. (1: load all subs containing movie name)
+sub-fuzziness=1
+
+# Set font encoding.
+# subfont-encoding=unicode
+
+# Set subtitle file encoding.
+# unicode=yes
+# utf8=yes
+
+
+#===========
+## Appearance
+##===========
+
+# Position window. (50%:50%: center of screen)
+geometry=50%:50%
+
+### My edits ###
+
+softvol=1                                                                                                                        
+softvol-max=400
+
+#profile for up-mixing two channels audio to six channels
+# use -profile 2chto6ch to activate
+[2chto6ch]
+af-add=pan=6:1:0:.4:0:.6:2:0:1:0:.4:.6:2
+
+
+# Disable screensaver.
+# heartbeat-cmd="xscreensaver-command -deactivate &" # stop xscreensaver
+# stop-xscreensaver="yes" # stop gnome-screensaver
+heartbeat-cmd="qdbus org.freedesktop.ScreenSaver  /ScreenSaver SimulateUserActivity" #For kscreensaver
